@@ -22,42 +22,45 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   let currentFeedIndex = 2;
-  setInterval(() => {
-    // Add next activity item from feed items array
-    const item = feedItems[currentFeedIndex];
-    const itemEl = document.createElement('div');
-    itemEl.className = `activity-item ${item.type}`;
-    itemEl.style.opacity = '0';
-    itemEl.style.transform = 'translateY(15px)';
-    
-    itemEl.innerHTML = `
-      <div class="activity-badge"></div>
-      <span class="activity-text">${item.text}</span>
-      <span class="activity-action ${item.actionClass}">${item.action}</span>
-    `;
-    
-    activityFeed.appendChild(itemEl);
-    
-    // Trigger entry transition
+
+  function scheduleNextFeedItem() {
+    const jitter = (Math.random() - 0.5) * 1200; // ±600ms variance
+    const delay = 3500 + jitter;
     setTimeout(() => {
-      itemEl.style.transition = 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-      itemEl.style.opacity = '1';
-      itemEl.style.transform = 'translateY(0)';
-    }, 50);
+      const item = feedItems[currentFeedIndex];
+      const itemEl = document.createElement('div');
+      itemEl.className = `activity-item ${item.type}`;
+      itemEl.style.opacity = '0';
+      itemEl.style.transform = 'translateY(15px)';
 
-    // Keep feed height tidy by removing the top item if we exceed 3 items
-    if (activityFeed.children.length > 3) {
-      const firstChild = activityFeed.children[0];
-      firstChild.style.transition = 'all 0.5s';
-      firstChild.style.opacity = '0';
-      firstChild.style.transform = 'translateY(-15px)';
+      itemEl.innerHTML = `
+        <div class="activity-badge"></div>
+        <span class="activity-text">${item.text}</span>
+        <span class="activity-action ${item.actionClass}">${item.action}</span>
+      `;
+
+      activityFeed.appendChild(itemEl);
+
       setTimeout(() => {
-        firstChild.remove();
-      }, 500);
-    }
+        itemEl.style.transition = 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+        itemEl.style.opacity = '1';
+        itemEl.style.transform = 'translateY(0)';
+      }, 50);
 
-    currentFeedIndex = (currentFeedIndex + 1) % feedItems.length;
-  }, 3500);
+      if (activityFeed.children.length > 3) {
+        const firstChild = activityFeed.children[0];
+        firstChild.style.transition = 'all 0.5s';
+        firstChild.style.opacity = '0';
+        firstChild.style.transform = 'translateY(-15px)';
+        setTimeout(() => firstChild.remove(), 500);
+      }
+
+      currentFeedIndex = (currentFeedIndex + 1) % feedItems.length;
+      scheduleNextFeedItem();
+    }, delay);
+  }
+
+  scheduleNextFeedItem();
 
 
   /* --- 3. INTERACTIVE STEP-BY-STEP PHONE SIMULATOR --- */
@@ -112,23 +115,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Step 3 Sensor tactile hold simulation
   const biometricSensorBtn = document.getElementById('biometrics-sensor-btn');
-  if (biometricSensorBtn) {
-    let holdTimeout;
-    
+  const progressFill = document.getElementById('biometrics-progress-fill');
+  if (biometricSensorBtn && progressFill) {
+    const HOLD_DURATION = 800;
+    const CIRCUMFERENCE = 289;
+    let holdTimeout = null;
+    let progressRaf = null;
+    let holdStart = null;
+
+    const animateProgress = (timestamp) => {
+      if (!holdStart) holdStart = timestamp;
+      const elapsed = timestamp - holdStart;
+      const pct = Math.min(elapsed / HOLD_DURATION, 1);
+      progressFill.style.strokeDashoffset = CIRCUMFERENCE * (1 - pct);
+      if (pct < 1) {
+        progressRaf = requestAnimationFrame(animateProgress);
+      }
+    };
+
     const triggerVerification = () => {
+      holdStart = null;
       biometricSensorBtn.classList.add('holding');
+      progressRaf = requestAnimationFrame(animateProgress);
       holdTimeout = setTimeout(() => {
-        setPhoneStep(4); // Advance to dynamic cryptographic success
+        cancelAnimationFrame(progressRaf);
+        progressFill.style.strokeDashoffset = 0;
+        setPhoneStep(4);
         biometricSensorBtn.classList.remove('holding');
-      }, 800);
+        // Reset ring after transition
+        setTimeout(() => { progressFill.style.strokeDashoffset = CIRCUMFERENCE; }, 600);
+      }, HOLD_DURATION);
     };
 
     const cancelVerification = () => {
       clearTimeout(holdTimeout);
+      cancelAnimationFrame(progressRaf);
+      progressFill.style.strokeDashoffset = CIRCUMFERENCE;
       biometricSensorBtn.classList.remove('holding');
+      holdStart = null;
     };
 
-    // Support both desktop click/mousedown and mobile touch events
     biometricSensorBtn.addEventListener('mousedown', triggerVerification);
     biometricSensorBtn.addEventListener('mouseup', cancelVerification);
     biometricSensorBtn.addEventListener('mouseleave', cancelVerification);
@@ -141,28 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /* --- 4. DEVELOPER CODE TOGGLE WIDGET --- */
-  const tabButtons = document.querySelectorAll('.widget-tab');
-  const codeBlocks = document.querySelectorAll('.widget-code');
-
-  tabButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const tab = btn.dataset.tab;
-      
-      tabButtons.forEach(b => {
-        if (b.dataset.tab === tab) b.classList.add('active');
-        else b.classList.remove('active');
-      });
-
-      codeBlocks.forEach(code => {
-        if (code.id === `code-${tab}`) code.classList.add('active');
-        else code.classList.remove('active');
-      });
-    });
-  });
-
-
-  /* --- 5. INTERSECTION OBSERVER FOR FADE-IN ANIMATIONS --- */
+  /* --- 4. INTERSECTION OBSERVER FOR FADE-IN ANIMATIONS --- */
   const fadeElements = document.querySelectorAll('.fade-in');
   
   const observerOptions = {
@@ -209,53 +214,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* --- 6. FIDO2 PROTOCOL SANDBOX --- */
-  const simulateFidoBtn = document.getElementById('btn-simulate-fido2');
-  const sandboxTerminal = document.getElementById('sandbox-terminal');
-  const sandboxActionInput = document.getElementById('sandbox-action');
-  const sandboxMessageInput = document.getElementById('sandbox-message');
-
-  if (simulateFidoBtn && sandboxTerminal) {
-    simulateFidoBtn.addEventListener('click', () => {
-      const action = sandboxActionInput.value.trim() || 'stripe.payments.create';
-      const message = sandboxMessageInput.value.trim() || 'Approve transaction';
-
-      // Clear terminal and print simulation start
-      sandboxTerminal.innerHTML = '';
-      
-      const appendLine = (text, type = '') => {
-        const el = document.createElement('div');
-        el.className = `terminal-line ${type}`;
-        el.textContent = text;
-        sandboxTerminal.appendChild(el);
-        sandboxTerminal.scrollTop = sandboxTerminal.scrollHeight;
-      };
-
-      appendLine(`Initializing FIDO2 Session for action: ${action}`, 'prompt');
-      
-      setTimeout(() => {
-        appendLine('Connecting to hardware authenticator via USB/NFC...', 'info');
-      }, 400);
-
-      setTimeout(() => {
-        appendLine('Prompting user biometrics verification (PIN/TouchID)...', 'warning');
-      }, 1000);
-
-      setTimeout(() => {
-        appendLine('TouchID verified. Generating Secp256r1 signature keypair...', 'success');
-      }, 1800);
-
-      setTimeout(() => {
-        const challenge = btoa(Math.random().toString()).substring(0, 16);
-        const rawSig = '3045022100' + Array.from({length:64}, () => Math.floor(Math.random()*16).toString(16)).join('');
-        appendLine('----- CRYPTOGRAPHIC PROOF -----', 'info');
-        appendLine(`Challenge: ${challenge}`, 'info');
-        appendLine(`ClientDataHash: sha256(${JSON.stringify({action, message})})`, 'info');
-        appendLine(`Signature: ${rawSig}`, 'success');
-        appendLine('-------------------------------', 'info');
-        appendLine('AC2 SECURE SIGNATURE GENERATED SUCCESSFULLY.', 'success');
-      }, 2600);
-    });
-  }
 });
 

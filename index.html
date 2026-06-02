@@ -5,6 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ControlYourAI — AC2 keeps you in control of your AI agents</title>
   <meta name="description" content="AC2 keeps you in control of what your AI agent can do. Keep your passwords, keys, and credentials on your device where they belong. Works with OpenClaw, Hermes, Claude, and more.">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://controlyourai.com/">
+  <meta property="og:title" content="ControlYourAI — AC2 keeps you in control of your AI agents">
+  <meta property="og:description" content="AC2 keeps you in control of what your AI agent can do. Your passwords, keys, and credentials stay on your device where they belong.">
+  <meta property="og:image" content="assets/images/hero_person.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ControlYourAI — AC2 keeps you in control of your AI agents">
+  <meta name="twitter:description" content="AC2 keeps you in control of what your AI agent can do. Your passwords, keys, and credentials stay on your device where they belong.">
+  <meta name="twitter:image" content="assets/images/hero_person.png">
+
+  <!-- Canonical & Robots -->
+  <link rel="canonical" href="https://controlyourai.com/">
+  <meta name="robots" content="index, follow">
+
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -23,7 +41,6 @@
         <a href="#changes-section">What Changes</a>
         <a href="#works-section">How It Works</a>
         <a href="#credentials-section">Security</a>
-        <a href="#integrations-section">Integrations</a>
         <a href="#testimonials-section">Stories</a>
       </nav>
       <div class="nav-cta">
@@ -264,10 +281,16 @@
                   <!-- View 3: Biometric Touch -->
                   <div class="phone-view" id="view-step-3">
                     <div class="biometrics-overlay">
-                      <div class="biometrics-sensor" id="biometrics-sensor-btn">
-                        <svg viewBox="0 0 24 24">
-                          <path d="M12,2A10,10,0,0,0,2,12a1,1,0,0,0,2,0A8,8,0,0,1,12,4a1,1,0,0,0,0-2Zm0,4a6,6,0,0,0-6,6,1,1,0,0,0,2,0,4,4,0,0,1,8,0,1,1,0,0,0,2,0A6,6,0,0,0,12,6Zm0,4a2,2,0,0,0-2,2,1,1,0,0,0,2,0,1,1,0,0,0,0,0,1,1,0,0,0,0-2Zm0,6a6,6,0,0,0-3.46,1.1,1,1,0,1,0,1.1,1.67A4,4,0,0,1,12,16a1,1,0,0,0,0-2Zm0-4a4,4,0,0,0-4,4,1,1,0,0,0,2,0,2,2,0,0,1,4,0,1,1,0,0,0,2,0A4,4,0,0,0,12,12Z"/>
+                      <div class="biometrics-sensor-wrapper">
+                        <svg class="biometrics-progress-ring" viewBox="0 0 100 100">
+                          <circle class="progress-ring-track" cx="50" cy="50" r="46"/>
+                          <circle class="progress-ring-fill" id="biometrics-progress-fill" cx="50" cy="50" r="46"/>
                         </svg>
+                        <div class="biometrics-sensor" id="biometrics-sensor-btn">
+                          <svg viewBox="0 0 24 24">
+                            <path d="M12,2A10,10,0,0,0,2,12a1,1,0,0,0,2,0A8,8,0,0,1,12,4a1,1,0,0,0,0-2Zm0,4a6,6,0,0,0-6,6,1,1,0,0,0,2,0,4,4,0,0,1,8,0,1,1,0,0,0,2,0A6,6,0,0,0,12,6Zm0,4a2,2,0,0,0-2,2,1,1,0,0,0,2,0,1,1,0,0,0,0,0,1,1,0,0,0,0-2Zm0,6a6,6,0,0,0-3.46,1.1,1,1,0,1,0,1.1,1.67A4,4,0,0,1,12,16a1,1,0,0,0,0-2Zm0-4a4,4,0,0,0-4,4,1,1,0,0,0,2,0,2,2,0,0,1,4,0,1,1,0,0,0,2,0A4,4,0,0,0,12,12Z"/>
+                          </svg>
+                        </div>
                       </div>
                       <div class="biometrics-label">Hold to Approve with TouchID</div>
                     </div>
@@ -296,8 +319,44 @@ TX: 0x8df61a...</div>
           </div>
         </div>
         
+        <!-- Compatible frameworks strip -->
+        <div class="compat-strip fade-in">
+          <span class="compat-label">Works with</span>
+          <div class="compat-logos">
+            <span class="compat-logo">
+              <!-- Hermes — stylised winged mark -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.5 2 5.5 4 4 7c1 0 2-.5 2.5-1C7.5 8 9.5 9 12 9s4.5-1 5.5-2c.5.5 1.5 1 2.5 1-1.5-3-4.5-6-8-6zM4 9c-1.1 1-2 2.5-2 4 0 .6.1 1.2.3 1.7L4 13c.3-.7.7-1.3 1.2-1.8L4 9zm16 0-1.2 2.2c.5.5.9 1.1 1.2 1.8l1.7 1.7c.2-.5.3-1.1.3-1.7 0-1.5-.9-3-2-4zM7 13.5C7 16 9.2 18 12 18s5-2 5-4.5c0-.3 0-.5-.1-.8-1.3.8-2.8 1.3-4.9 1.3s-3.6-.5-4.9-1.3c-.1.3-.1.5-.1.8zM9 19.5c0 .8.4 1.5 1 2l.5.5h3l.5-.5c.6-.5 1-1.2 1-2v-.8c-.9.5-1.9.8-3 .8s-2.1-.3-3-.8v.8z"/></svg>
+              Hermes
+            </span>
+            <span class="compat-logo">
+              <!-- OpenClaw — claw/bracket mark -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 3C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h2v-2H5V5h2V3H5zm14 0h-2v2h2v14h-2v2h2c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5.3 3.3-1.4 1.4L14 9.4l-1.7 1.7 1.4 1.4 1.7-1.7 1.7 1.7 1.4-1.4-3.1-3.8zM9.7 9.9 8 11.6l-1.7-1.7-1.4 1.4 3.1 3.1 1.4-1.4-1.7-1.7 1.7-1.7-1.7-1.7z"/></svg>
+              OpenClaw
+            </span>
+            <span class="compat-logo">
+              <!-- Anthropic official mark -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></svg>
+              Claude
+            </span>
+            <span class="compat-logo">
+              <!-- LangChain official mark -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.796 0a6.93 6.93 0 0 0-4.91 2.019L5.451 5.455l3.273 3.27 3.432-3.432a2.284 2.284 0 0 1 3.277 0 2.28 2.28 0 0 1 0 3.275L12 12.001l3.273 3.273 3.433-3.435c2.692-2.692 2.692-7.127 0-9.82A6.92 6.92 0 0 0 13.796 0m-5.07 8.728-3.433 3.434c-2.692 2.693-2.692 7.126 0 9.819A6.92 6.92 0 0 0 10.203 24a6.93 6.93 0 0 0 4.911-2.02l3.432-3.432-3.271-3.272-3.433 3.433a2.284 2.284 0 0 1-3.277 0 2.28 2.28 0 0 1 0-3.276L12 12z"/></svg>
+              LangChain
+            </span>
+            <span class="compat-logo">
+              <!-- CrewAI official mark -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.482.18C7.161 1.319 1.478 9.069 1.426 15.372c-.051 5.527 3.1 8.68 8.68 8.627 6.716-.05 14.259-6.87 12.09-10.9-.672-1.292-1.396-1.344-2.687-.207-1.602 1.395-1.654.31-.207-2.893 1.757-3.98 1.705-5.322-.31-7.544C17.03.388 14.962-.388 12.482.181Zm5.322 2.068c2.273 2.015 2.376 4.236.465 8.42-1.395 3.1-2.17 3.515-3.824 1.86-1.24-1.24-1.343-3.46-.258-6.044 1.137-2.635.982-3.1-.568-1.653-3.72 3.358-6.458 9.765-5.424 12.503.464 1.189.825 1.395 2.737 1.395 2.79 0 6.303-1.705 7.957-3.926 1.756-2.274 2.79-2.274 2.79-.052 0 3.875-6.459 8.627-11.625 8.627-6.251 0-9.351-4.752-7.491-11.47.878-2.995 4.443-7.904 7.077-9.66 3.255-2.17 5.684-2.17 8.164 0z"/></svg>
+              CrewAI
+            </span>
+            <span class="compat-logo compat-logo--any">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 2a8 8 0 1 1 0 16A8 8 0 0 1 12 4zm0 2a6 6 0 1 0 0 12A6 6 0 0 0 12 6zm0 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
+              Any Agent
+            </span>
+          </div>
+        </div>
+
         <span class="under-hood-note fade-in">
-          Under the hood, AC2 uses <strong>FIDO2</strong> — the same security tech that protects your bank login. But you don't need to know that. <strong>It just works.</strong>
+          Under the hood, AC2 uses <strong>WebAuthn passkeys</strong> and a direct peer-to-peer connection — your phone and your agent talk directly, with no server in the middle holding your secrets. But you don't need to know any of that. <strong>It just works.</strong>
         </span>
       </div>
     </section>
@@ -311,8 +370,9 @@ TX: 0x8df61a...</div>
           <p class="credentials-desc">Giving an agent raw credentials is like giving someone a copy of your house key. If their servers are breached or a plugin goes rogue, your access is completely compromised.</p>
           <p class="credentials-quote">AC2 flips this. Your credentials stay locked on your device. When your agent needs to act, it asks your phone. You authorize that specific action and your device signs it—the agent never gets the key itself.</p>
           <p class="credentials-desc">It's the difference between handing over your house key and buzzing a guest through the intercom.</p>
+          <p class="credentials-integration-note fade-in">Building an agent tool? AC2 is an open protocol spec — add it to your agent via a <strong>configuration file</strong>, or drop in one of our <strong>framework plugins</strong> for LangChain, CrewAI, and more. <a href="#get-started-section">Read the spec →</a></p>
         </div>
-        
+
         <!-- Interactive Side-by-Side security comparators -->
         <div class="comparison-wrapper fade-in">
           <!-- Row 1: Without AC2 -->
@@ -352,104 +412,6 @@ TX: 0x8df61a...</div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- SECTION 6: WORKS WITH WHAT YOU ALREADY USE -->
-    <section class="integrations-section" id="integrations-section">
-      <div class="container">
-        <div class="fade-in">
-          <span class="section-tag">Compatible Ecosystem</span>
-          <h2>Works with your setup</h2>
-          <p class="integrations-desc">AC2 is an open protocol. It works alongside whatever agent framework you're already running.</p>
-        </div>
-        
-        <!-- Framework Logo strip -->
-        <div class="logo-grid fade-in">
-          <!-- Hermes -->
-          <div class="framework-logo">
-            <svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 4l7.5 13h-15L12 6z"/></svg>
-            <span>Hermes</span>
-          </div>
-          <!-- OpenClaw -->
-          <div class="framework-logo">
-            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-7.07 17.07A10 10 0 0019.07 4.93 9.93 9.93 0 0012 2zm0 18a8 8 0 115.66-13.66A8 8 0 0112 20z"/></svg>
-            <span>OpenClaw</span>
-          </div>
-          <!-- Claude -->
-          <div class="framework-logo">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
-            <span>Claude Skills</span>
-          </div>
-          <!-- LangChain -->
-          <div class="framework-logo">
-            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
-            <span>LangChain</span>
-          </div>
-          <!-- CrewAI -->
-          <div class="framework-logo">
-            <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-            <span>CrewAI</span>
-          </div>
-          <!-- Plug / Generic -->
-          <div class="framework-logo">
-            <svg viewBox="0 0 24 24"><path d="M16 7h-1l-1-1h-4l-1 1H8v2h8V7zm2 4H6v2c0 2.21 1.79 4 4 4v3h4v-3c2.21 0 4-1.79 4-4v-2z"/></svg>
-            <span>Your Tool</span>
-          </div>
-        </div>
-        
-        <!-- Tabbed Developer integration code snippet -->
-        <div class="developer-widget fade-in">
-          <div class="widget-header">
-            <div class="widget-tabs">
-              <button class="widget-tab active" data-tab="python" id="tab-btn-python">Python SDK</button>
-              <button class="widget-tab" data-tab="js" id="tab-btn-js">Node.js</button>
-            </div>
-            <div class="widget-meta">ac2-protocol v1.2.0</div>
-          </div>
-          <div class="widget-body">
-            <!-- Python Code -->
-            <pre class="widget-code active" id="code-python"><code><span class="keyword">from</span> ac2 <span class="keyword">import</span> AC2Client
-
-<span class="comment"># Initialize secure AC2 lockbox</span>
-client = AC2Client(secret_store=<span class="string">"local"</span>)
-
-<span class="comment"># Request sensitive Stripe permission from user device</span>
-permission = client.request_action(
-    action=<span class="string">"stripe.payments.create"</span>,
-    description=<span class="string">"Generate $250 invoice to Alex"</span>,
-    fido2_required=<span class="keyword">True</span>
-)
-
-<span class="keyword">if</span> permission.is_approved:
-    <span class="comment"># Execute using signed authorization token</span>
-    response = client.execute(permission.token)
-    print(<span class="string">"Action signed &amp; verified!"</span>)</code></pre>
-            
-            <!-- JS Code -->
-            <pre class="widget-code" id="code-js"><code><span class="keyword">const</span> { AC2Client } = <span class="keyword">require</span>(<span class="string">'ac2-protocol'</span>);
-
-<span class="comment">// Initialize secure AC2 connection</span>
-<span class="keyword">const</span> client = <span class="keyword">new</span> AC2Client({ store: <span class="string">'local'</span> });
-
-<span class="comment">// Request permission from user phone</span>
-<span class="keyword">const</span> permission = <span class="keyword">await</span> client.requestAction({
-  action: <span class="string">'stripe.payments.create'</span>,
-  message: <span class="string">'Generate $250 invoice to Alex'</span>,
-  biometrics: <span class="keyword">true</span>
-});
-
-<span class="keyword">if</span> (permission.approved) {
-  <span class="comment">// Execute signed transaction securely</span>
-  <span class="keyword">const</span> res = <span class="keyword">await</span> client.execute(permission.token);
-  console.log(<span class="string">'Action signed &amp; verified!'</span>);
-}</code></pre>
-          </div>
-        </div>
-        
-        <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--text-secondary);" class="fade-in">
-          About 50 lines of code to integrate. If you're a framework builder, <a href="#get-started-section" style="color: var(--accent-coral); font-weight:600;">check out the developer docs →</a>
-        </p>
       </div>
     </section>
 
@@ -502,47 +464,6 @@ permission = client.request_action(
       </div>
     </section>
 
-    <!-- SECTION 7.5: LIVE FIDO2 PROTOCOL PLAYGROUND -->
-    <section class="playground-section" id="playground-section">
-      <div class="container">
-        <div style="text-align: center; margin-bottom: 4rem;" class="fade-in">
-          <span class="section-tag">Developer Sandbox</span>
-          <h2 class="section-title" style="margin-left: auto; margin-right: auto;">Try the FIDO2 Signature Builder</h2>
-          <p class="section-desc" style="margin-left: auto; margin-right: auto;">Test how AC2 secures credentials. Enter an action below to simulate FIDO2 hardware signing directly in your browser.</p>
-        </div>
-
-        <div class="playground-grid">
-          <!-- Playground Control Panel -->
-          <div class="playground-input-panel fade-in">
-            <div class="playground-input-group">
-              <label for="sandbox-action">Agent Action Request</label>
-              <input type="text" id="sandbox-action" placeholder="e.g. stripe.refunds.create" value="stripe.payments.create">
-            </div>
-            <div class="playground-input-group">
-              <label for="sandbox-message">Message/Payload Description</label>
-              <input type="text" id="sandbox-message" placeholder="e.g. Send $250 invoice to Alex" value="Approve $1,200 payout to vendor">
-            </div>
-            <button class="btn btn-primary" id="btn-simulate-fido2" style="width: 100%; justify-content: center; font-weight: 700;">Simulate Request &amp; Sign</button>
-          </div>
-
-          <!-- Playground Terminal Console -->
-          <div class="playground-terminal-panel fade-in">
-            <div class="terminal-header">
-              <div class="terminal-dots">
-                <div class="terminal-dot red"></div>
-                <div class="terminal-dot yellow"></div>
-                <div class="terminal-dot green"></div>
-              </div>
-              <span class="terminal-title">fido2-protocol-sandbox.sh</span>
-            </div>
-            <div class="terminal-body" id="sandbox-terminal">
-              <div class="terminal-line prompt"># AC2 Protocol Sandbox ready. Enter an action and click "Simulate Request".</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- SECTION 8: GET STARTED -->
     <section class="get-started-section" id="get-started-section">
       <div class="container">
@@ -561,7 +482,7 @@ permission = client.request_action(
             <!-- Path 2: Secondary -->
             <div class="cta-path">
               <h3>I build agent tools</h3>
-              <p>Developer docs, FIDO2 integration spec, and quick-start protocols.</p>
+              <p>Read the open protocol spec, explore framework plugins, or contribute an <code>ac2-ext</code> extension.</p>
               <button class="btn btn-secondary" id="cta-btn-secondary" style="margin-top: auto; padding: 0.75rem 1.5rem;">View Specs →</button>
             </div>
           </div>
